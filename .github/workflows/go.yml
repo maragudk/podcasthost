@@ -1,0 +1,45 @@
+name: Go
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go: [ "1.16", "1.17", "1.18" ]
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-go@v2
+        with:
+          go-version: ${{ matrix.go }}
+          check-latest: true
+
+      - name: Build
+        run: go build -v ./...
+
+      - name: Test
+        if: ${{ matrix.go != '1.16' }}
+        run: go test -v -shuffle on ./...
+
+      - name: Test
+        if: ${{ matrix.go == '1.16' }}
+        run: go test -v ./...
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v2
+
+      - name: Lint
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: latest

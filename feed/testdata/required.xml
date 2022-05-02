@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>The Podcast Show</title>
+    <description>A show about podcasts.</description>
+    <itunes:image href="https://example.com/artwork.jpg"></itunes:image>
+    <language>en-us</language>
+    <itunes:category text="Education">
+      <itunes:category text="How To"></itunes:category>
+    </itunes:category>
+    <itunes:explicit>true</itunes:explicit>
+    <item>
+      <title>Episode 1</title>
+      <enclosure url="https://example.com/1.mp4" length="123" type="audio/mp4"></enclosure>
+    </item>
+  </channel>
+</rss>
